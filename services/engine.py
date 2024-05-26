@@ -34,7 +34,6 @@ def predictions(education, marital_status, income, nb_kids_home, nb_teens_home, 
         prediction = model.predict(
             [[education, marital_status, income, nb_kids_home, nb_teens_home, age]]
         )
-        print("PREEED", prediction[0])
         predictions[column] = prediction[0]
 
     predictions = translate_output(predictions)
@@ -82,8 +81,5 @@ def get_products_by_category(predictions):
     products = {}
     for category in PURCHASE_CATEGORY:
         new_key = PRODUCT_CATEGORY_MAPPING[category]
-        print("NEWKEEEY", new_key)
-        print("PREDICTIONS", predictions)
-
         products[new_key] = predictions[category]
     return products
