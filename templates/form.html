@@ -1,0 +1,41 @@
+<form  method="POST">
+      <div class="form-group m-2">
+        <input required type="number" class="form-control" id="inputAge" name="inputAge" placeholder="Age">
+      </div>
+      <div class="form-group m-2">
+        <input required type="number" class="form-control" id="inputIncome" name="inputIncome" placeholder="Yearly income $">
+    </div>
+      <div class="form-group m-2">
+        <input required type="number" class="form-control" id="inputKids" name="inputKids" placeholder="Number of kids at home">
+    </div>
+    <div class="form-group m-2">
+      <input required type="number" class="form-control" id="inputTeens" name="inputTeens" placeholder="Number of teenagers at home">
+    </div>
+
+    <div class="form-group m-2">
+        <select required id="inputEducation" name="inputEducation" class="form-control">
+          <option selected value="">Choose education level...</option>
+          <option value="4">2n Cycle</option>
+          <option value="3">Basic</option>
+          <option value="2">Graduation</option>
+          <option value="1">Master</option>
+          <option value="0">PhD</option>
+        </select>
+      </div>
+      <div class="form-group m-2">
+        <select required id="inputMaritalStatus" name="inputMaritalStatus" class="form-control">
+          <option selected value="">Choose marital status...</option>
+          <option value="7">YOLO</option>
+          <option value="6">Absurd</option>
+          <option value="5">Alone</option>
+          <option value="4">Widow</option>
+          <option value="3">Divorced</option>
+          <option value="2">Married</option>
+          <option value="1">Together</option>
+          <option value="0">Single</option>
+
+        </select>
+      </div>
+
+    <button type="submit" class="btn btn-primary m-2">Predict</button>
+  </form>

@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+{% block body %}
+<title>ShoppingProphet</title>
+  <h1 class="title p-2">ShoppingProphet <br/> AI-Driven Forecasting Purchases Through Customer Behavioral Analytics</h1>
+  
+  <div class="mb-3 glassomorphic-container">
+    <h5 class="text-center m-3">Let's Make Predictions</h5>
+    <p class="text-center m-3">On the ShoppingProphet website, users can leverage predictive analytics to forecast purchase habits by inputting client information. By entering relevant data points the AI-driven platform employs machine learning algorithms to generate personalized predictions. These predictions offer valuable insights into potential future purchases, empowering businesses to tailor their marketing strategies and enhance customer engagement.</p>
+      <div class="d-flex mb-3 justify-content-center">
+        {% include "form.html" %}
+      </div>
+    {% if prediction %}
+      <div class="d-flex mb-3 flex-column justify-content-center">
+        <div class="base-color">
+          Predicitons for a new <b>[{{prediction["Input"]["Age"]}}]</b> year old customer with 
+            <b>[{{prediction["Input"]["Education_level"]}}]</b> education level, 
+              <b>[{{prediction["Input"]["MaritalStatus"]}}]</b> marital status, earning 
+                <b>[{{prediction["Input"]["Income"]}}$]</b> per year, having 
+                  <b>[{{prediction["Input"]["NumberOfKidsAtHome"]}}]</b> young child(ren) and 
+                    <b>[{{prediction["Input"]["NumberOfTeensAtHome"]}}]</b> teenager(s) at home :
+        </div>
+        <div class="base-color">
+
+          Output : 
+          <ul>
+          {%for output in prediction["Output"]%}
+          <li>{{ output }}</li>
+          {%endfor%}
+
+        </ul>
+        </div>
+
+      </div>
+      {% endif %}
+  </div>
+
+
+  {% with histograms_html=histograms_html %}
+            {% include "histograms.html" %}
+    {% endwith %}
+
+  {% with piecharts_html=piecharts_html %}
+            {% include "pie_charts.html" %}
+    {% endwith %}
+
+
+  {% endblock %}
+

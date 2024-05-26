@@ -1,0 +1,48 @@
+.title {
+    color: white;
+}
+.blurry-scroll-container {
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    position: relative;
+}
+
+.blurry-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('background.png');
+    filter: blur(5px);
+    filter: saturate(50%); /* Blur effect */
+    z-index: -1; /* Ensure background stays behind content */
+}
+
+.content {
+    padding: 100px;
+}
+
+.glassomorphic-container {
+    background-color: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.btn {
+    background-color: #98A0D0 !important;
+    border: none !important;
+}
+
+h5, p, .base-color {
+    color: #B65899 !important;
+}
+
+
+.carousel-control-prev-icon, .carousel-control-next-icon {
+    filter: invert(100%);}
+
+
