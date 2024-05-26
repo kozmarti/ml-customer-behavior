@@ -1,19 +1,17 @@
 
-<div id="carouselExampleIndicators" class="carousel slide glassomorphic-container m-5">
-    <h5 class="text-center m-3">Quantitative Insights from Historical Customer Data for Machine Learning Model Training</h5>
+<div id="carouselExampleIndicators{{chart_source}}" class="carousel slide glassomorphic-container m-5">
+    <h5 class="text-center m-3">{{title_text}}</h5>
 
     <div class="carousel-indicators">
-      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 0"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators{{chart_source}}" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 0"></button>
       {% for histogram in histograms_html%}
-      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{loop.index}}" aria-label="Slide {{loop.index}}"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators{{chart_source}}" data-bs-slide-to="{{loop.index}}" aria-label="Slide {{loop.index}}"></button>
       {% endfor %}
     </div>
-
-
     <div class="carousel-inner">
                 <div class="carousel-item active">
                 <div class="d-block w-100 d-flex mb-3 justify-content-center " >
-                    <img src="{{ url_for('static',filename='logo.png') }}" alt="...">
+                    <img src="static/{{chart_source}}" alt="...">
                 </div>
                 </div>
 
@@ -28,11 +26,11 @@
     </div>
 
 
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators{{chart_source}}" data-bs-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Previous</span>
     </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators{{chart_source}}" data-bs-slide="next">
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Next</span>
     </button>

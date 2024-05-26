@@ -33,14 +33,14 @@
       </div>
       {% endif %}
   </div>
+  
 
-
-  {% with histograms_html=histograms_html %}
-            {% include "histograms.html" %}
+  {% with histograms_html=histograms_html, title_text="Quantitative Insights from Historical Customer Data for Machine Learning Model Training", chart_source="logo.png" %}
+            {% include "charts.html" %}
     {% endwith %}
 
-  {% with piecharts_html=piecharts_html %}
-            {% include "pie_charts.html" %}
+  {% with histograms_html=piecharts_html, title_text="Demographic Histoical Data Distributions for Model Input", chart_source="pie-chart.png" %}
+            {% include "charts.html" %}
     {% endwith %}
 
 
