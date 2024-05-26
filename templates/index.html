@@ -21,11 +21,19 @@
         </div>
         <div class="base-color">
 
-          Output : 
+
           <ul>
-          {%for output in prediction["Output"]%}
-          <li>{{ output }}</li>
-          {%endfor%}
+            <li> Will shop most often <b>{{prediction["Output"]["maxPurchaseMethod"]}}</b></li> 
+            <li> Will buy most likely <b>{{prediction["Output"]["maxPurchaseCategory"]}} </b> products</li> 
+            <li> Will spend money on the products by category in the following ranges:
+<ul>
+
+  {% for key, value in products_by_category.items() %}
+    <li> {{key}}:  {{value}}</li>
+  {% endfor%}
+
+</ul>
+           
 
         </ul>
         </div>
