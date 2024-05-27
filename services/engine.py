@@ -50,7 +50,7 @@ def predictions(education, marital_status, income, nb_kids_home, nb_teens_home, 
 
 
 def get_cleaned_data():
-    data = pd.read_csv(PATH_RAW_DATA, dtype={"Education": str})
+    data = pd.read_csv(PATH_RAW_DATA)
     data.dropna(inplace=True)
     data = data.drop(columns=COLUMNS_TO_EXCLUDE)
     data["age"] = 2010 - data["Year_Birth"]
