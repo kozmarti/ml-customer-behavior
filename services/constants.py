@@ -70,3 +70,5 @@ PURCHASE_METHOD_MAPPING = {
     "NumCatalogPurchases": "from the catalog",
     "NumStorePurchases": "in the grocery store",
 }
+
+MODELS_PATH = "models"

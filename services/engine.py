@@ -1,20 +1,21 @@
+import os
 import joblib
 import pandas as pd
 
-from services.constants import (
+from .constants import (
     COLUMNS_TO_EXCLUDE,
     EDUCATION,
     MARITAL_STATUS,
-    MAX_CALCULATED_CATEGORY,
+    MODELS_PATH,
     OUTPUT_COLUMNS,
-    INPUT_COLUMNS,
     PATH_RAW_DATA,
     PRODUCT_CATEGORY_MAPPING,
     PURCHASE_CATEGORY,
     PURCHASE_METHOD,
     PURCHASE_METHOD_MAPPING,
 )
-from services.graphs import get_histograms, get_pie_charts
+from .decision_tree_classifier_model import DecisionTreeClassifierModel
+from .graphs import get_histograms, get_pie_charts
 
 
 def show_data():
@@ -23,13 +24,16 @@ def show_data():
     piecharts_html = get_pie_charts(
         df, ["Teenhome", "Kidhome", "Education", "Marital_Status"]
     )
-    return df.to_html(), histograms_html, piecharts_html
+    return histograms_html, piecharts_html
 
 
 def predictions(education, marital_status, income, nb_kids_home, nb_teens_home, age):
     predictions = {}
     for column in OUTPUT_COLUMNS:
-        model = joblib.load(f"models/{column}-recommender.joblib")
+        if not os.path.exists(MODELS_PATH):
+            model = DecisionTreeClassifierModel(PATH_RAW_DATA, MODELS_PATH)
+            model.create_model()
+        model = joblib.load(f"{MODELS_PATH}/{column}-recommender.joblib")
         #  ['Education', 'Marital_Status', 'Income', 'Kidhome', 'Teenhome', 'age']
         prediction = model.predict(
             [[education, marital_status, income, nb_kids_home, nb_teens_home, age]]
@@ -69,10 +73,9 @@ def translate_output(data):
     for method in PURCHASE_METHOD:
         amount_range = f"{int(df[method].quantile((data[method] - 1)*0.25))} - {int(df[method].quantile(data[method]*0.25))}"
         data[method] = amount_range
-    for key in MAX_CALCULATED_CATEGORY:
-        mapping = PURCHASE_METHOD_MAPPING
-        mapping.update(PRODUCT_CATEGORY_MAPPING)
-        data[key] = mapping[data[key]]
+
+    data["maxPurchaseCategory"] = PRODUCT_CATEGORY_MAPPING[PURCHASE_CATEGORY[data["maxPurchaseCategory"]]]
+    data["maxPurchaseMethod"] = PURCHASE_METHOD_MAPPING[PURCHASE_METHOD[data["maxPurchaseMethod"]]]
 
     return data
 

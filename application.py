@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 @app.route("/", methods=["GET", "POST"])
 def index():
-    data, histograms_html, piecharts_html = show_data()
+    histograms_html, piecharts_html = show_data()
     prediction = None
     products_by_category = None
     if request.method == "POST":
@@ -23,7 +23,6 @@ def index():
         products_by_category = get_products_by_category(prediction["Output"])
     return render_template(
         "index.html",
-        data=data,
         histograms_html=histograms_html,
         piecharts_html=piecharts_html,
         prediction=prediction,
